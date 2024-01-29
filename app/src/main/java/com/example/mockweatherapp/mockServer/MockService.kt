@@ -1,16 +1,18 @@
 package com.example.mockweatherapp.mockServer
 
+import android.util.Log
 import com.example.mockweatherapp.model.Data
 import com.example.mockweatherapp.model.Temperature
 import com.example.mockweatherapp.model.WeatherDataResponse
+import com.example.mockweatherapp.retrofit.ApiService
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.time.LocalDateTime
 import java.time.ZoneId
+import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 
 class MockService {
@@ -21,14 +23,14 @@ class MockService {
         mockSWebServer.start()
     }
 
-    fun createApiService(baseUrl: String): MockService{
+    fun createApiService(): ApiService{
         val httpClient = OkHttpClient.Builder().build()
         val retrofit = Retrofit.Builder()
             .baseUrl(getBaseUrl())
             .client(httpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        return retrofit.create(MockService::class.java)
+        return retrofit.create(ApiService::class.java)
     }
 
     fun shutdownMockServer() {
@@ -36,6 +38,7 @@ class MockService {
     }
 
     private fun getBaseUrl(): String {
+        Log.e("baseUrl", mockSWebServer.url("/").toString())
         return mockSWebServer.url("/").toString()
     }
 
@@ -46,11 +49,11 @@ class MockService {
     private fun getTimeStamp(): String {
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX")
         val zoneId = ZoneId.of("America/Mexico_City")
-        val localDateTime = LocalDateTime.now(zoneId)
-        return localDateTime.format(formatter)
+        val zonedDateTime = ZonedDateTime.now(zoneId)
+        return zonedDateTime.format(formatter)
     }
 
-    private fun buildWeatherDataResponse(): WeatherDataResponse {
+    fun buildWeatherDataResponse(): WeatherDataResponse {
         return WeatherDataResponse(
             Temperature(
                 listOf(
