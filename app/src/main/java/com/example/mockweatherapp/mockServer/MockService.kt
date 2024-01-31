@@ -180,12 +180,12 @@ class MockService {
                     Data(
                         "Yuen Long Park",
                         "C",
-                        2
+                        26
                     ),
                     Data(
                         "Tai Mei Tuk",
                         "C",
-                        2
+                        25
                     )
                 ),
                 getTimeStamp()

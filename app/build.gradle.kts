@@ -2,6 +2,7 @@ plugins {
     kotlin("android") version "1.9.0"
     kotlin("kapt")
     id("com.android.application")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -69,9 +70,6 @@ dependencies {
     implementation("com.squareup.okhttp3:mockwebserver:4.12.0")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("com.google.dagger:dagger:2.50")
-    kapt("com.google.dagger:dagger-compiler:2.50")
-    implementation("com.google.dagger:dagger-android:2.50")
-    implementation("com.google.dagger:dagger-android-support:2.50")
-    kapt("com.google.dagger:dagger-android-processor:2.50")
+    implementation("com.google.dagger:hilt-android:2.48")
+    kapt("com.google.dagger:hilt-android-compiler:2.48")
 }

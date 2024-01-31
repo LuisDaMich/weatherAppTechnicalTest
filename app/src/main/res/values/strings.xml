@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MockWeatherApp</string>
+    <string name="location_title"><b>Location</b></string>
+    <string name="temperature_title"><b>Temperature</b></string>
+    <string name="btn_text">Next Random Location</string>
+    <string name="temperature_placeholder"> 26 C </string>
+    <string name="location_placeholder"> Mexico City </string>
 </resources>

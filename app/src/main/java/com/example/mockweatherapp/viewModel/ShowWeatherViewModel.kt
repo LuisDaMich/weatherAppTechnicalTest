@@ -5,11 +5,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mockweatherapp.mockServer.MockService
 import com.example.mockweatherapp.model.WeatherDataResponse
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class ShowWeatherViewModel: ViewModel() {
+@HiltViewModel
+class ShowWeatherViewModel @Inject constructor(): ViewModel() {
     private val mockService = MockService()
     fun fetchDataFromApi(onSuccess: (WeatherDataResponse) -> Unit, onError: (String) -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
